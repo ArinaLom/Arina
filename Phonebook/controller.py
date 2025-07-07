@@ -1,14 +1,18 @@
-
 from model import PhoneBook, ContactNotFoundError
 from view import PhoneBookView
 
 class PhoneBookController:
+    """Контроллер для управления телефонным справочником."""
+
     def __init__(self, filename):
+        """Инициализация контроллера с заданным файлом для хранения контактов."""
         self.phonebook = PhoneBook(filename)
         self.view = PhoneBookView()
 
     def run(self):
-        while True:
+        """Запуск основного цикла управления телефонным справочником."""
+        running = True
+        while running:
             print("\nТелефонный справочник")
             print("1. Показать все контакты")
             print("2. Создать контакт")
@@ -42,6 +46,6 @@ class PhoneBookController:
                 self.view.show_message("Контакт удален.")
             elif choice == '6':
                 print("Выход из программы.")
-                break
+                running = False  # Устанавливаем условие выхода
             else:
                 self.view.show_message("Неверный выбор. Пожалуйста, попробуйте снова.")
